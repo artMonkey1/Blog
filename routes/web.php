@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Frontend\PostController@index');
+
+Route::resource('categories', 'Frontend\CategoryController')->only('index', 'show');
+Route::resource('posts', 'Frontend\PostController')->only('show');
+
+Auth::routes(['register' => false]);
+
+Route::get('/home', 'HomeController@index')->name('home');
